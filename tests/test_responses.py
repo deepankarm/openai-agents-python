@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import time
 from typing import Any
 
 from openai.types.responses import (
@@ -37,9 +38,14 @@ def get_text_message(content: str) -> ResponseOutputItem:
 
 
 def get_function_tool(
-    name: str | None = None, return_value: str | None = None, hide_errors: bool = False
+    name: str | None = None,
+    return_value: str | None = None,
+    hide_errors: bool = False,
+    blocking: bool = False,
 ) -> FunctionTool:
     def _foo() -> str:
+        if blocking:
+            time.sleep(1)
         return return_value or "result_ok"
 
     return function_tool(
