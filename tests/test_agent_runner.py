@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import time
 from typing import Any
 
 import pytest
@@ -256,9 +257,9 @@ async def test_handoff_filters():
 
     assert result.final_output == "last"
     assert len(result.raw_responses) == 2, "should have two model responses"
-    assert len(result.to_input_list()) == 2, (
-        "should only have 2 inputs: orig input and last message"
-    )
+    assert (
+        len(result.to_input_list()) == 2
+    ), "should only have 2 inputs: orig input and last message"
 
 
 @pytest.mark.asyncio
@@ -592,9 +593,37 @@ async def test_tool_use_behavior_first_output():
 
     result = await Runner.run(agent, input="user_message")
 
-    assert result.final_output == Foo(bar="tool_one_result"), (
-        "should have used the first tool result"
+    assert result.final_output == Foo(
+        bar="tool_one_result"
+    ), "should have used the first tool result"
+
+
+@function_tool(run_in_thread=True)
+def blocking_tool_definition():
+    time.sleep(1)
+    return "blocking_tool_result"
+
+
+@pytest.mark.asyncio
+@pytest.mark.no_leaks(tasks=True, blocking=True, blocking_threshold=0.2, threads=False)
+async def test_tool_use_behavior_run_in_thread():
+    model = FakeModel()
+    agent = Agent(
+        name="test",
+        model=model,
+        tools=[blocking_tool_definition],
+        tool_use_behavior="stop_on_first_tool",
     )
+    model.add_multiple_turn_outputs(
+        [
+            [
+                get_text_message("a_message"),
+                get_function_tool_call("blocking_tool_definition", None),
+            ],
+        ]
+    )
+    result = await Runner.run(agent, input="user_message")
+    assert result.final_output == "blocking_tool_result"
 
 
 def custom_tool_use_behavior(

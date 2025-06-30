@@ -467,11 +467,14 @@ sdist = { url = "https://files.pythonhosted.org/packages/d1/99/4d24bb6db12fc170a
 
 [[package]]
 name = "exceptiongroup"
-version = "1.2.2"
+version = "1.3.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/09/35/2495c4ac46b980e4ca1f6ad6db102322ef3ad2410b79fdde159a4b0f3b92/exceptiongroup-1.2.2.tar.gz", hash = "sha256:47c2edf7c6738fafb49fd34290706d1a1a2f4d1c6df275526b62cbb4aa5393cc", size = 28883, upload-time = "2024-07-12T22:26:00.161Z" }
+dependencies = [
+    { name = "typing-extensions", marker = "python_full_version < '3.13'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/0b/9f/a65090624ecf468cdca03533906e7c69ed7588582240cfe7cc9e770b50eb/exceptiongroup-1.3.0.tar.gz", hash = "sha256:b241f5885f560bc56a59ee63ca4c6a8bfa46ae4ad651af316d4e81817bb9fd88", size = 29749, upload-time = "2025-05-10T17:42:51.123Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/02/cc/b7e31358aac6ed1ef2bb790a9746ac2c69bcb3c8588b41616914eb106eaf/exceptiongroup-1.2.2-py3-none-any.whl", hash = "sha256:3111b9d131c238bec2f8f516e123e14ba243563fb135d3fe885990585aa7795b", size = 16453, upload-time = "2024-07-12T22:25:58.476Z" },
+    { url = "https://files.pythonhosted.org/packages/36/f4/c6e662dade71f56cd2f3735141b265c3c79293c109549c1e6933b0651ffc/exceptiongroup-1.3.0-py3-none-any.whl", hash = "sha256:4d111e6e0c13d0644cad6ddaa7ed0261a0b36971f6d23e7ec9b4b9097da78a10", size = 16674, upload-time = "2025-05-10T17:42:49.33Z" },
 ]
 
 [[package]]
@@ -1517,6 +1520,7 @@ dev = [
     { name = "mkdocstrings", extra = ["python"] },
     { name = "mypy" },
     { name = "playwright" },
+    { name = "pyleak" },
     { name = "pynput" },
     { name = "pytest" },
     { name = "pytest-asyncio" },
@@ -1559,6 +1563,7 @@ dev = [
     { name = "mkdocstrings", extras = ["python"], specifier = ">=0.28.0" },
     { name = "mypy" },
     { name = "playwright", specifier = "==1.50.0" },
+    { name = "pyleak", specifier = ">=0.1.11" },
     { name = "pynput" },
     { name = "pytest" },
     { name = "pytest-asyncio" },
@@ -1904,6 +1909,18 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/7c/2d/c3338d48ea6cc0feb8446d8e6937e1408088a72a39937982cc6111d17f84/pygments-2.19.1.tar.gz", hash = "sha256:61c16d2a8576dc0649d9f39e089b5f02bcd27fba10d8fb4dcc28173f7a45151f", size = 4968581, upload-time = "2025-01-06T17:26:30.443Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/8a/0b/9fcc47d19c48b59121088dd6da2488a49d5f72dacf8262e2790a1d2c7d15/pygments-2.19.1-py3-none-any.whl", hash = "sha256:9ea1544ad55cecf4b8242fab6dd35a93bbce657034b0611ee383099054ab6d8c", size = 1225293, upload-time = "2025-01-06T17:26:25.553Z" },
+]
+
+[[package]]
+name = "pyleak"
+version = "0.1.11"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "exceptiongroup" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/68/35/c70c8461950323abc7d0fb9445c93f5fd1d5bc715684ab2f54eaa0feff0a/pyleak-0.1.11.tar.gz", hash = "sha256:46b9e615769bdb9e8e97ede2fb5d5c2bc1f824bf0daf9f3a2cf17f1da83f1397", size = 104827, upload-time = "2025-06-09T07:46:10.555Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/64/28/e5ec8a0d269f504a052135e21ff3f57b8a65b65761f7f9bff0fc48569d18/pyleak-0.1.11-py3-none-any.whl", hash = "sha256:238c689ef39b4533910339ea28ca1b2a006f8d7625b71511dd1e6b9dc18bb870", size = 23864, upload-time = "2025-06-09T07:46:09.214Z" },
 ]
 
 [[package]]
